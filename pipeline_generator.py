@@ -17,11 +17,11 @@ def generate_workflow(bp):
     for stage in stages:
         if stage == 'deploy':
             jobs[stage] = {
-                'uses': f'./.github/workflows/deploy-{deploy}.yml@main'
+                'uses': f'./.github/workflows/deploy-{deploy}.yml'
             }
         else:
             jobs[stage] = {
-                'uses': f'./.github/workflows/{lang}.yml@main',
+                'uses': f'./.github/workflows/{lang}.yml',
                 'with': {
                     'job': stage
                 }
