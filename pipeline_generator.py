@@ -17,11 +17,11 @@ def generate_workflow(bp):
     for stage in stages:
         if stage == 'deploy':
             jobs[stage] = {
-                'uses': f'.github/workflows/deploy-{deploy}.yml'
+                'uses': f'./.github/workflows/deploy-{deploy}.yml@main'
             }
         else:
             jobs[stage] = {
-                'uses': f'.github/workflows/{lang}.yml',
+                'uses': f'./.github/workflows/{lang}.yml@main',
                 'with': {
                     'job': stage
                 }
@@ -38,7 +38,6 @@ def generate_workflow(bp):
     }
 
 def save_workflow(data):
-    # Ensure folder exists
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, 'w') as f:
         yaml.dump(data, f, sort_keys=False)
