@@ -1,0 +1,16 @@
+name: Python Build Workflow
+
+on:
+  workflow_call:
+    inputs:
+      job:
+        required: true
+        type: string
+
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo job name
+        run: 'echo "Running Python stage: ${{ inputs.job }}"'
+
