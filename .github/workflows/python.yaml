@@ -1,0 +1,32 @@
+name: Reusable Python CI
+
+on:
+  workflow_call:
+    inputs:
+      job:
+        required: true
+        type: string
+
+jobs:
+  lint:
+    if: ${{ inputs.job == 'lint' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install flake8
+      - run: flake8 .
+
+  test:
+    if: ${{ inputs.job == 'test' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install -r requirements.txt
+      - run: pytest
+
+  package:
+    if: ${{ inputs.job == 'package' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: python setup.py sdist

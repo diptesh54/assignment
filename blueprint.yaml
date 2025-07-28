@@ -1,0 +1,9 @@
+project:
+  name: "my-python-service"
+  language: "python"
+  deployment: "docker"
+  stages:
+    - lint
+    - test
+    - package
+    - deploy

@@ -1,0 +1,12 @@
+name: Docker Deploy
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build -t myapp:${{ github.sha }} .
+      - run: echo "🔧 Simulated Docker push"
